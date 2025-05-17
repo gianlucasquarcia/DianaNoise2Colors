@@ -6,7 +6,6 @@ from rich import print
 
 
 def get_audio_amplitude(duration=0.5, sample_rate=44100):
-    """Records audio for a short duration and returns the average amplitude."""
     try:
         recording = sd.rec(
             int(sample_rate * duration),
@@ -49,7 +48,6 @@ def rgb_to_hex(rgb):
 
 
 def print_colored_hex_rich(hex_color, text):
-    """Prints text colored using a hex code with the 'rich' library."""
     if hex_color != "#000000":
         print(f"[{hex_color}]{text}[/{hex_color}]")
 
@@ -57,8 +55,7 @@ def print_colored_hex_rich(hex_color, text):
 def print_ascii_art(file_path, hex_color):  # pragma: no cover
     with open(file_path, "r") as f:
         for line in f:
-            # print(colored(line, color), end="", flush=True)
-            print(f"[{hex_color}]{line}[/{hex_color}]")
+            print_colored_hex_rich(hex_color=hex_color, text=line)
 
 
 if __name__ == "__main__":
@@ -69,9 +66,8 @@ if __name__ == "__main__":
         while True:
             amp = get_audio_amplitude()
             color = amplitude_to_color(amp)
-            # print_colored_hex_rich(hex_color=rgb_to_hex(color), text=color)
             print_ascii_art("ascii_arts/welcome", hex_color=rgb_to_hex(color))
-            time.sleep(0.5)  # Adjust the update frequency
+            time.sleep(0.5)
     except KeyboardInterrupt:
         print("\nStopping...")
     except Exception as e:
