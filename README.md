@@ -34,7 +34,12 @@ pip install -r requirements.txt
 
 ## Start the app with
 ```shell
-python app.py
+python RealTimeFrequencyGraph.py
+```
+
+or (to show the waveform)
+```shell
+python RealTimeFrequencyGraph.py --wave
 ```
 
 
